@@ -1,0 +1,1668 @@
+<!doctype html>
+<html>
+<head>
+        <meta charset="utf-8">
+        <title>Nexcom</title>
+        <link rel="shortcut icon" href="../resources/images/NEXCOM.jpg"/>
+        <link rel="stylesheet" href="../resources/css/bootstrap.min.css">
+        <script type="text/javascript" src="https://code.jquery.com/jquery.min.js"></script>
+        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script src="../resources/js/kernel/bootstrap.min.js"></script>
+        <script src="../resources/js/kernel/ajaxq.js"></script>
+        
+<!--        <script type="text/javascript" src="js/lib/jquery.steps-1.1.0/jquery.steps.js"></script> -->
+        <script type="text/javascript" src="../resources/js/lib/sweetalert.min.js"></script>
+        <script type="text/javascript" src="../resources/js/lib/notify.js"></script>
+        <script type="text/javascript" src="../resources/js/upload.js"></script>
+        
+        <script type="text/javascript" src="../resources/js/config.js"></script>
+        <script type="text/javascript" src="../resources/js/global.js"></script>
+        <script type="text/javascript" src="../resources/js/login.js"></script>
+        <script type="text/javascript" src="../resources/js/calculate.js"></script>
+        <script type="text/javascript" src="../resources/js/displayList.js"></script>
+        
+        <link href="../resources/css/reset.css" rel="stylesheet" type="text/css">
+        <link href="../resources/css/style_.css" rel="stylesheet" type="text/css">
+        <link href="../resources/css/css_hack.css" rel="stylesheet" type="text/css">
+        <link href="../resources/css/addFix_1.css" rel="stylesheet" type="text/css">
+        <link href="../resources/css/modal.css" rel="stylesheet" type="text/css">
+        
+	<link rel="stylesheet" type="text/css" href="../resources/css/lib/sweetalert.css" />
+<!--	<link rel="stylesheet" type="text/css" href="css/index.css" />-->
+	<link rel="stylesheet" type="text/css" href="../resources/css/close.css" />
+<!--	<link rel="stylesheet" type="text/css" href="css/extra.css" />-->
+	<link rel="stylesheet" type="text/css" href="../resources/css/start.css" />
+	<link rel="stylesheet" type="text/css" href="../resources/css/font-awesome.css" />
+        
+        <script>
+            $.upload_file_transient = [];
+        </script>
+</head>
+<body>
+    <div id="loading">
+        <i class="fa fa-spinner fa-spin fa-2x"></i>
+        <div></div>
+    </div>
+    
+    <div class="head">
+        <img src="../resources/images/top.png" width="38" height="49" alt=""/>
+        <img class="logo" src="../resources/images/Nexcom.png" width="230" height="22" alt=""/>
+        <a href="../">
+            <button class="btn headBtn" translate="LOGOUT">Logout</button>
+        </a>
+        <a href="#" id="headerManagement" hidden>
+            <button class="btn headBtn" translate="ACCESS_POINT_MANAGEMENT" data-toggle="modal" data-target="#modalManagement">Management</button>
+        </a>
+        <a href="#">
+            <button id="btnSaveProject" class="btn headBtn" translate="SAVE_PROJECT">Save Project</button>
+        </a>
+        <a href="#">
+            <button id="btnOpenProject" class="btn headBtn" translate="OPEN_PROJECT">Open Project</button>
+            <input id="projectUpload" type="file" accept=".fu3i"  style="display:none;">
+            <span id="projectName" class="" style="font-size: 14pt; color: #00ff00; margin:20px 12px 0 0; float:right;"></span>
+        </a>
+        
+        
+    </div>
+
+    <div class="headContent">
+        <div class="topOption">
+<!--            <span translate="MODE">Mode:</span>
+            <select>
+              <option translate="FIXED">Fixed</option>
+            </select>-->
+        </div>
+    </div>
+    
+    <div class="content">
+        <!-- Menu -->
+        <nav class="nav">
+          <ul id="iconmenu" class="nav-tabs">
+              <li id="sContentMenu_01" step='1-1'>
+                <a href="#sContent_01" class="active">
+                  <span class="icon_1"></span>
+                    <c translate="MAP_SCALE">Map&Scale</c>
+                  <span class="icon_2"></span>
+                </a>
+              </li>
+              <li id="sContentMenu_02" step='2-1'>
+                <a href="#sContent_02">
+                  <span class="icon_1"></span>
+                    <c translate="SENSOR_NODE">Sensor Node</c>
+                  <span class="icon_2"></span>
+                </a>
+              </li>
+              <li id="sContentMenu_03" step='3-1'>
+                <a href="#sContent_03">
+                  <span class="icon_1"></span>
+                    <c translate="PREDICTIVE_SURVEY">Predictive Survey</c>
+                  <span class="icon_2"></span>
+                </a>
+              </li>
+              <li id="sContentMenu_04" step='4-1'>
+                <a href="#sContent_04">
+                  <span class="icon_1"></span>
+                    <c translate="BOUNDARY_OBSTACLE">Boundary&Obstacle</c>
+                  <span class="icon_2"></span>
+                </a>
+              </li>
+              <li id="sContentMenu_05" step='5-1'>
+                <a href="#sContent_05">
+                  <span class="icon_1"></span>
+                    <c translate="REPORT">Report</c>
+                  <span class="icon_2"></span>
+                </a>
+              </li>
+           </ul>
+        </nav>
+
+        <!-- sub Content -->
+        <div id="subContent" class="tab-conten">
+                <div class="sContentBox tab-pane fade in active" id="sContent_01">
+                    <div class="subOption">
+                        <div class="listBox" index="1">
+                            <span translate="IMPORT_MAP">Import Map:</span>
+                            <input id="mapUploadFileName" type="text" disabled>
+                            <input id="mapUpload" type="file" accept=".jpg,.png" size="mapUpload">
+                            <img id="mapUploadBtn" src="../resources/images/download.png" width="19" height="22"/>
+                            <span class="button-group">
+                                Step <c class="step">1</c> / 2
+<!--                                <button class="btnStart btnPrev" translate="PREV_STEP">Prev Step</button>-->
+                                <button class="btnStart btnNext" translate="NEXT_STEP">Next Step</button>
+                            </span>
+                        </div>
+                        <div class="listBox" index="1">
+                            <span class="myset_subTitle" translate="DEMAND_AREA">Demand area:</span>
+                            <ul class="nav nav-pills">
+                                <li id="btnRequirementArea" data-toggle="tooltip" title="Requirement Area (Rectangle)">
+                                    <a href="#" translate="REQUIREMENT_AREA_RECTANGLE">
+                                        Requirement Area (Rectangle)
+                                    </a>
+                                </li>
+                                <li id="btnRequirementAreaOval"  data-toggle="tooltip" title="Requirement Area (Oval)">
+                                    <a href="#" translate="REQUIREMENT_AREA_OVAL">
+                                        Requirement Area (Oval)
+                                    </a>
+                                </li>
+                                <!--li id="btnRequirementAreaTriangle"  data-toggle="tooltip" title="Requirement Area (Triangle)">
+                                    <a href="#" translate="REQUIREMENT_AREA_TRIANGLE">
+                                        Requirement Area (Triangle)
+                                    </a>
+                                </li-->
+                                <li id="btnRequirementAreaPolygonal"  data-toggle="tooltip" title="Requirement Area (Polygonal)">
+                                    <a href="#" translate="REQUIREMENT_AREA_POLYGONAL">
+                                        Requirement Area (Polygonal)
+                                    </a>
+                                </li>
+                                <li id="btnDrag" style="display: none;"></li>
+                            </ul>
+                        </div>
+                        
+                        
+                        <div class="listBox clearfix" index="2" hidden>
+                            <span>
+                                <ul class="nav nav-pills">
+                                    <li id="btnScale"><a href="#" translate="SCALE">Scale</a></li>
+                                </ul>
+                            </span>
+                            <span class="button-group">
+                                Step <c class="step">1</c> / 2
+                                <button class="btnStart btnPrev" translate="PREV_STEP">Prev Step</button>
+                                <button class="btnStart btnNext" translate="NEXT_STEP">Next Step</button>
+                            </span>
+                        </div>
+                    </div>
+                        
+                </div>
+
+                <div class="sContentBox tab-pane fade" id="sContent_02">
+                    <div class="subOption">
+                        
+<!--                        <div class="listBox clearfix" index="1">
+                            <span>
+                                <ul class="nav nav-pills">
+                                    <li id="btnScale"><a href="#" translate="SCALE">Scale</a></li>
+                                </ul>
+                            </span>
+                            <span class="button-group">
+                                Step <c class="step">1</c> / 3
+                                <button class="btnStart btnPrev" translate="PREV_STEP">Prev Step</button>
+                                <button class="btnStart btnNext" translate="NEXT_STEP">Next Step</button>
+                            </span>
+                        </div>-->
+                        
+                        <div class="listBox clearfix" index="1">
+                            <span translate="SENSOR_NODE_COLON">Sensor Node:</span>
+                            <select id="selectSensorNode"></select>
+                            <span class="myset_btn">
+                                <ul class="nav nav-pills">
+                                    <li id="btnSensorNode" role="presentation"><a href="#" translate="DRAW">Draw</a></li>
+                                </ul>
+                            </span>
+                            <span class="button-group">
+                                Step <c class="step">1</c> / 1
+                                <button class="btnStart btnPrev" translate="PREV_STEP">Prev Step</button>
+                                <button class="btnStart btnNext" translate="NEXT_STEP">Next Step</button>
+                            </span>
+                            <div id="sensorNodeTransmitterAttr">
+                                <h3>TRANSMITTER</h3>
+                                <div class="myset_span_group_1">
+                                    <span>TX Power</span>
+                                    <span><input step="0.1" value="17" type="number"></span>
+                                    <span>[dBm]</span>
+                                </div>
+                                <div class="myset_span_group_1">
+                                    <span>Cable Loss</span>
+                                    <span><input step="0.1" value="3" type="number"></span>
+                                    <span>[dB]</span>
+                                </div>
+                                <div class="myset_span_group_1">
+                                    <span>Antenna Gain</span>
+                                    <span><input step="0.1" value="8" type="number"></span>
+                                    <span>[dBi]</span>
+                                </div>
+                                <div class="myset_span_group_1">
+                                    <span>Frequency</span>
+                                    <span><input step="1" value="5150" type="number"></span>
+                                    <span>[MHz]</span>
+                                </div>
+                            </div>
+                            <div id="sensorNodeReceiverAttr">
+                                <h3>RECEIVER</h3>
+                                <div class="myset_span_group_1">
+                                    <span>RX Power</span>
+                                    <span><input step="0.1" value="-70" type="number"></span>
+                                    <span>[dBm]</span>
+                                </div>
+                               <div class="myset_span_group_1">
+                                    <span>Cable Loss</span>
+                                   <span><input step="0.1" value="3" type="number"></span>
+                                   <span>[dB]</span>
+                               </div>
+                                <div class="myset_span_group_1">
+                                    <span>Antenna Gain</span>
+                                    <span><input step="0.1" value="8" type="number"></span>
+                                    <span>[dBi]</span>
+                                </div>
+                               <div class="myset_span_group_1" hidden>
+                                    <span>Frequency</span>
+                                   <span><input step="1" value="5150" type="number"></span>
+                                   <span>[MHz]</span>
+                               </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+                </div>
+
+                <div class="sContentBox tab-pane fade" id="sContent_03">
+                    
+                    <div class="subOption" index="1">
+                        <div class="listBox clearfix">
+                            <span translate="UPLINK_POINT_COLON">Uplink Point:</span>
+<!--                            <select id="selectUplinkPoint"></select>-->
+                            <span class="myset_btn">
+                                <ul class="nav nav-pills">
+                                    <li id="btnUplinkPoint" role="presentation"><a href="#" translate="DRAW">Draw</a></li>
+                                </ul>
+                            </span>
+                            <span class="button-group">
+                                Step <c class="step">1</c> / 2
+                                <button class="btnStart btnPrev" translate="PREV_STEP">Prev Step</button>
+                                <button class="btnStart btnNext" translate="NEXT_STEP">Next Step</button>
+                            </span>
+                        </div>
+                    </div>
+                    
+                    <div class="subOption" index="2">
+                        <div class="listBox clearfix">
+                            <span translate="ACCESS_POINT_COLON">Access Point:</span>
+<!--                            <select id="selectAccessPoint"></select>-->
+                            <span>
+                                <ul class="nav nav-pills">
+                                    <li id="btnAp"><a href="#" translate="ACCESS_POINT">Access Point</a></li>
+                                </ul>
+                            </span>
+
+                            <span class="button-group"">
+                                Step <c class="step">1</c> / 2
+                                <button class="btnStart btnPrev" translate="PREV_STEP">Prev Step</button>
+                                <button class="btnStart btnNext" translate="NEXT_STEP">Next Step</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="subOption" index="2">
+                        <div class="listBox">
+                            <div class="myset_group_level_1">
+                                <span><input id="apTypeMesh" type="radio" name="apType" value="Mesh" checked></span>
+                                <span><label for="apTypeMesh">MESH</label></span>
+                                <span><input id="apTypeAP" type="radio" name="apType" value="Ap""></span>
+                                <span><label for="apTypeAP">AP</label></span>
+                            </div>
+                        </div>
+                        <div class="listBox placeForChooseApType" for="Mesh">
+                            <div class="myset_group_level_1">
+                                <span class="myset_span_group_1">
+                                        <select id="selectApValue" for="Mesh"></select>
+                                </span>
+                                <span class="myset_span_group_1">
+                                    <span  translate="AP_HEIGHT">AP Height</span>
+                                    <span><input id="inputAPHeight" step="0.1" value="0" type="number" for="Mesh"></span>
+                                    <span>m</span>
+                                </span>
+
+<!--                                    <span class="myset_span_group_1">
+                                    <span translate="MINIMUM_RSSI">Minimum RSSI</span>
+                                    <span><input id="inputMiniRSSI" step="1" value="-70" for="Mesh"></span>
+                                    <span>dBm</span>
+                                </span>-->
+                                <div class="myset_subcontent_group" for="Mesh">
+                                    <div class="myset_group_level_2 clearfix">
+                                        <h3>TRANSMITTER</h3>
+                                        <div class="myset_span_group_1">
+                                            <span>TX Power</span>
+                                            <span><input step="0.1" name="tx_power" value="17" size="3" maxlength="6" type="number">[dBm]</span>
+                                        </div>
+                                        <div class="myset_span_group_1">
+                                            <span>Cable Loss</span>
+                                            <span><input step="0.1" name="cable_loss_tx" value="3" size="8" maxlength="8" type="number">[dB]</span>
+                                        </div>
+                                        <div class="myset_span_group_1">
+                                            <span>Antenna Gain</span>
+                                            <span><input step="0.1" name="antenna_gain_tx" value="8" size="4" maxlength="4" type="number">[dBi]</span>
+                                        </div>
+                                        <div class="myset_span_group_1" hidden>
+                                            <span>Frequency</span>
+                                            <span><input step="1" name="freq" value="5150" size="8" maxlength="8" type="number">[MHz]</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="myset_group_level_2 clearfix">
+                                        <h3>RECEIVER</h3>
+                                        <div class="myset_span_group_1">
+                                            <span>RX Power</span>
+                                            <span><input step="0.1" type="number" size="8" name="rssi" value="-70">[dBm]</span>
+                                        </div>
+                                        <div class="myset_span_group_1">
+                                            <span>Cable Loss</span>
+                                            <span><input step="0.1" type="number" name="cable_loss_rx" value="3" size="8" maxlength="8">[dB]</span>
+                                        </div>
+                                        <div class="myset_span_group_1">
+                                            <span>Antenna Gain</span>
+                                            <span><input step="0.1" type="number" name="antenna_gain_rx" value="8" size="4" maxlength="4">[dBi]</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="listBox placeForChooseApType" for="Ap" style="display: none;">
+                            <div class="myset_group_level_1">
+                                <span class="myset_span_group_1">
+                                        <select id="selectApValue" for="Ap"></select>
+                                </span>
+                                <span class="myset_span_group_1">
+                                    <span  translate="AP_HEIGHT">AP Height</span>
+                                    <span><input id="inputAPHeight" step="0.1" value="0" type="number" for="Ap"></span>
+                                    <span>m</span>
+                                </span>
+
+                                <div class="myset_subcontent_group" for="Ap">
+                                    <div class="myset_group_level_2 clearfix">
+                                        <h3>TRANSMITTER</h3>
+                                        <div class="myset_span_group_1">
+                                            <span>TX Power</span>
+                                            <span><input step="0.1" name="tx_power" value="17" size="3" maxlength="6" type="number">[dBm]</span>
+                                        </div>
+                                        <div class="myset_span_group_1">
+                                            <span>Cable Loss</span>
+                                            <span><input step="0.1" name="cable_loss_tx" value="3" size="8" maxlength="8" type="number">[dB]</span>
+                                        </div>
+                                        <div class="myset_span_group_1">
+                                            <span>Antenna Gain</span>
+                                            <span><input step="0.1" name="antenna_gain_tx" value="8" size="4" maxlength="4" type="number">[dBi]</span>
+                                        </div>
+                                        <div class="myset_span_group_1" hidden>
+                                            <span>Frequency</span>
+                                            <span><input step="1" name="freq" value="5150" size="8" maxlength="8" type="number">[MHz]</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="myset_group_level_2 clearfix">
+                                        <h3>RECEIVER</h3>
+                                        <div class="myset_span_group_1">
+                                            <span>RX Power</span>
+                                            <span><input step="0.1" type="number" size="8" name="rssi" value="-70">[dBm]</span>
+                                        </div>
+                                        <div class="myset_span_group_1">
+                                            <span>Cable Loss</span>
+                                            <span><input step="0.1" type="number" name="cable_loss_rx" value="3" size="8" maxlength="8">[dB]</span>
+                                        </div>
+                                        <div class="myset_span_group_1">
+                                            <span>Antenna Gain</span>
+                                            <span><input step="0.1" type="number" name="antenna_gain_rx" value="8" size="4" maxlength="4">[dBi]</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sContentBox tab-pane fade" id="sContent_04">
+                    <div class="subOption">
+                        
+                        <div class="listBox clearfix" index="1">
+                            <div class="myset_group_level_1">
+                                <span translate="BOUNDARY_PARTITION">Boundary: Partition</span>
+                                <select id="wallColor" style="width: 125px;">
+                                </select>
+                                <span class="icon-box-0"></span>
+                            </div>
+                            <div class="myset_group_level_1">
+                                <span translate="THICKNESS_PARTITION">Thickness: Partition</span>
+                                <select id="wallThick">
+                                     <option value="15">15</option>
+                                     <option value="10">10</option>
+                                     <option value="5">5</option>
+                                     <option value="3">3</option>
+                                     <option value="2">2</option>
+                                     <option value="1">1</option>
+                                </select>
+                                <span>cm</span>
+                                <span>
+                                    <ul class="nav nav-pills">
+                                        <li id="btnDrawWall"><a href="#" translate="DRAW_PARTITION">Draw Partition</a></li>
+                                    </ul>
+                                </span>
+                            </div>
+                            <div class="myset_group_level_1">
+                                <span class="button-group">
+                                    Step <c class="step">1</c> / 3
+                                    <button class="btnStart btnPrev" translate="PREV_STEP">Prev Step</button>
+                                    <button class="btnStart btnNext" translate="NEXT_STEP">Next Step</button>
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="listBox clearfix" index="2">
+                            <div class="myset_group_level_1">
+                                <span class="myset_subTitle" translate="OBSTACLE_COLON">Obstacle:</span>
+                                <ul class="nav nav-pills">
+                                    <li id="btnObstacle" data-toggle="tooltip" title="Obstacle (Rectangle)">
+                                        <a href="#" translate="OBSTACLE_RECTANGLE">
+                                            Obstacle (Rectangle)
+                                        </a>
+                                    </li>
+                                    <li id="btnObstacleOval" data-toggle="tooltip" title="Obstacle (Oval)">
+                                        <a href="#" translate="OBSTACLE_OVAL">
+                                            Obstacle (Oval)
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </div>
+
+                            <div class="myset_group_level_1">
+                                <span class="button-group">
+                                    Step <c class="step">1</c> / 3
+                                    <button class="btnStart btnPrev" translate="PREV_STEP">Prev Step</button>
+                                    <button class="btnStart btnNext" translate="NEXT_STEP">Next Step</button>
+                                </span>
+                            </div>
+                        </div>
+                        
+                        <div class="listBox clearfix" index="3">
+                            <div class="myset_group_level_1">
+                                <span translate="REGION_CLASSIFICATION">Region Classification</span>
+                                <select id="regionClassificationColor" style="display: inline-block; width: 170px;">
+                                    <option value="#888888" rc_type="1">Tank Farms(1.5)</option>
+                                    <option value="#009FCC" rc_type="2">Building(1.3)</option>
+                                    <option value="#DDAA00" rc_type="3">Light Process Areas(1.2)</option>
+                                    <option value="#880000" rc_type="4">Heavy Process Areas(0.8)</option>
+                                    <option value="#111" rc_type="5">Tank Farms2(1.3)</option>
+                                 </select>
+                                <span class="icon-box-0"></span>
+                                <span>
+                                    <ul class="nav nav-pills">
+                                        <li id="btnDrawRegionClassification"><a href="#" translate="DRAW_REGION_CLASSIFICATION">Draw Region Classification</a></li>
+                                    </ul>
+                                </span>
+                            </div>
+                            <div class="myset_group_level_1">
+                                <span class="button-group">
+                                    Step <c class="step">1</c> / 3
+                                    <button class="btnStart btnPrev" translate="PREV_STEP">Prev Step</button>
+                                    <button id="btnBuild" class="btnStart" translate="BUILD">BUILD</button>
+                                    <button id="btnCalRSSI" class="btnStart" translate="JUST_CAL_RSSI">CAL RSSI</button>
+                                </span>
+                            </div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+                <div class="sContentBox tab-pane fade" id="sContent_05">
+                    <div class="subOption">
+                        <div class="listBox">
+                            <a href="../resources/test.xls" target="_blank">
+                                <button id="btnDownloadExcel" class="btnStart btnStart-big">Download Excel</button>
+                            </a>
+                            <span class="button-group">
+                                Step <c class="step">1</c> / 1
+                                <button id="btnReDraw" class="btnStart" translate="PREV_STEP">Prev Step</button>
+                                <button id="btnReBuild" class="btnStart" translate="REBUILD">Re-BUILD</button>
+                                <button id="btnCalRSSI" class="btnStart" translate="JUST_CAL_RSSI">CAL RSSI</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+    </div>
+    
+    <div class="content2">
+        <div id="inputScalePlace">
+            <span style="width: 75px;height: 35px;display: inline-block;"><input id="inputScale" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^1-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" class="form-control" value="0"></span>
+            <span style="width: 75px;height: 35px;display: inline-block;margin-left: 21px;">m</span>
+        </div>
+        <div id="inputHeightPlace">
+            <span style="width: 75px;height: 35px;display: inline-block;"><input id="inputHeight" onkeyup="if(this.value.length==1){this.value=this.value.replace(/[^0-9]/g,'')}else{this.value=this.value.replace(/\D/g,'')}" class="form-control" value="0"></span>
+            <span style="width: 75px;height: 35px;display: inline-block;margin-left: 21px;">m</span>
+        </div>
+        <div id="placeForScale" style="text-align: left;">
+            <span id="scaleForImage" class="canvasScale" style="display: inline-block; left: 0;">
+                <span>0</span><span></span><span></span><span></span><span></span>
+            </span>
+            <img class="canvasScaleImage" src="../resources/images/scale_200_horizontal.png" style="margin-right: auto; margin-left: 0; left: 10px;">
+        </div>
+        <div id="canvasPlace" style="float:left;">
+            <div class="coverCanvas" type="heatmap"></div>
+            <div class="dragPlace"></div>
+            <div class="tooltip right" role="tooltip" hidden> <div class="tooltip-arrow"></div> <div class="tooltip-inner"></div> </div>
+    <!--        <div class="coverCanvas" type="indr_heatmap"></div>-->
+    <!--        <div class="coverCanvas" type="indr_img"></div>-->
+            <div id="dragFrame"></div>
+            <div class="canvasBackgroundImg"></div>
+            <canvas id="canvas"></canvas>
+            <img style="display: block; right: 0; position: relative; margin-left: auto;" src="../../III/resources/images/heatmap_schematic_transparent.png">
+    <!--        <img class="canvasScaleImage" src="../resources/images/scale_200_horizontal.png">
+            <span id="scaleForImage" class="canvasScale">
+                <span>0</span><span></span><span></span><span></span><span></span>
+            </span>-->
+        </div>
+        <div id="listOfCompnentPlace" style="float:left;">
+            <div class="listOfComponent" component-type="straightWall">
+                <div class="list-name" translate="STRAIGHT_WALL">Straight Wall</div>
+                <button class="btn en-us-style clear-display" translate="CLEAR" style="width: 100%;">Clear</button>
+                <ul class="list-group"></ul>
+            </div>
+            <div class="listOfComponent" component-type="wall">
+                <div class="list-name" translate="PARTITION">Partition</div>
+                <button class="btn en-us-style clear-display" translate="CLEAR" style="width: 100%;">Clear</button>
+                <ul class="list-group"></ul>
+            </div>
+            <div class="listOfComponent" component-type="obstacle">
+                <div class="list-name" translate="OBSTACLE">Obstacle</div>
+                <button class="btn en-us-style clear-display" translate="CLEAR" style="width: 100%;">Clear</button>
+                <ul class="list-group"></ul>
+            </div>
+            <div class="listOfComponent" component-type="uplinkPoint">
+                <div class="list-name" translate="UPLINK_POINT">Uplink Point</div>
+                <button class="btn en-us-style clear-display" translate="CLEAR" style="width: 100%;">Clear</button>
+                <ul class="list-group"></ul>
+            </div>
+            <div class="listOfComponent" component-type="sensorNode">
+                <div class="list-name" translate="SENSOR_NODE">Sensor Node</div>
+                <button class="btn en-us-style clear-display" translate="CLEAR" style="width: 100%;">Clear</button>
+                <ul class="list-group"></ul>
+            </div>
+            <div class="listOfComponent" component-type="accessPoint">
+                <div class="list-name" translate="ACCESS_POINT">Access Point</div>
+                <button class="btn en-us-style clear-display" translate="CLEAR" style="width: 100%;">Clear</button>
+                <ul class="list-group"></ul>
+            </div>
+            <div class="listOfComponent" component-type="regionClassification">
+                <div class="list-name" translate="REGION_CLASSIFICATION">Region Classification</div>
+                <button class="btn en-us-style clear-display" translate="CLEAR" style="width: 100%;">Clear</button>
+                <ul class="list-group"></ul>
+            </div>
+        </div>
+    </div>
+    
+    <li class="list-group-item list-group-item-sample">
+        <img src="">
+        <span class="color"></span>
+        <span class="word"></span>
+        <span class="close">x</span>
+    </li>
+    
+    <div class="modal" id="modalManagement" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-lg" style="z-index: 9999;">
+            <div class="modal-content animated fadeIn">
+                <button type="button" class="close" data-dismiss="modal" style="margin-right: 5px;margin-top: 5px;position: absolute;right: 0;">
+                    <span aria-hidden="true" style="font-size: 30px;">×</span><span class="sr-only">Close</span>
+                </button>
+                <iframe src="account_management.html" width="100%" style="height: 95vh;"></iframe>
+            </div>
+        </div>
+    </div>
+    
+    <footer>Industry 4.0 Device & Network Health Manager</footer>
+    
+        <script type="text/javascript" src="../resources/js/canvas.js"></script>
+        <script>
+            
+            function connected_callback(member) {
+                    $.member = member;
+                    //not admin
+                    if( $.member.a_role !== "2" ){
+                        $("#headerManagement").hide();
+                    }
+                    else{
+                        $("#headerManagement").show();
+                    }
+            };
+            
+            $(document).ready(function(){
+                    init();
+            });
+            
+            function init(){
+                //page position
+                $.nowPage = "1-1";
+                $.maxStep = "1-1";
+                //radio button reset
+                $("#apTypeMesh").click();
+                //input reset
+                $("#mapUploadFileName").val("");
+                $("#inputScale").val("0");
+                $("[id=inputAPHeight]").val("0");
+//                $("[id=inputMiniRSSI]").val("-70");
+                $("#sensorNodeReceiverAttr input").eq(0).val("-70");
+                $(".myset_subcontent_group").find("input:eq(4)").val("-70");
+                //drag frame drag event
+                
+                getWallList();
+                getRegionClassificationList();
+                getAccessPointList();
+                //get client info
+                $.ajax({
+                    type:"POST",
+                    url: "jsp/account.jsp",
+    //                    dataType: "JSON",
+                    data: {
+                        "func": "login2"
+                    },
+                    success: function(data){
+                            data = JSON.parse(data);
+                            console.log(data);
+                    },
+                    error:function(xhr, ajaxOptions, thrownError){ 
+                        console.log(xhr.status); 
+                        console.log(thrownError); 
+                    }
+                });
+                
+                
+            }
+            
+            $("#btnSaveProject").bind("click",function(){
+                
+                var deployApType = $('[name="apType"]:checked').attr("value");
+                var pos = $(".myset_subcontent_group[for="+deployApType+"]").find("input");
+                var ap = { "range":$('[id=selectApValue][for='+deployApType+']').val(), "height":parseFloat($("[id=inputAPHeight][for="+deployApType+"]").val()) };
+                
+                $.ajax({
+                    type:"POST",
+                    url: "jsp/projectManager.jsp",
+    //                    dataType: "JSON",
+                    data: {
+                        
+                        readOrSave:false,//true for read
+                        "drawLines":JSON.stringify( $.drawLines ),
+                        "drawStraightLines":JSON.stringify( $.drawStraightLines ),
+                        "drawSquares":JSON.stringify( $.drawSquares ), 
+                        "drawObstacles":JSON.stringify( $.drawObstacles ),
+                        "drawUplinkPoint":JSON.stringify( $.drawUplinkPoint ),
+                        "drawSensorNode":JSON.stringify( $.drawSensorNode ),
+                        "drawAccessPoint":JSON.stringify( $.drawAccessPoint ),
+                        "drawRegionClassifications":JSON.stringify( $.drawRegionClassifications ),
+                        "drawRegionClassificationsTemp":JSON.stringify( $.drawRegionClassificationsTemp ),
+                        "drawRequirementAreaPolygonals":JSON.stringify( $.drawRequirementAreaPolygonals ),
+                        "drawRequirementAreaPolygonalsTemp":JSON.stringify( $.drawRequirementAreaPolygonalsTemp ),
+                        
+                        "imgWidth": $.drawImg===undefined?0:parseInt($.drawImg.attributes.width.value),
+                        "imgHeight": $.drawImg===undefined?0:parseInt($.drawImg.attributes.height.value),
+                        
+                        deployPara: JSON.stringify( [pos.eq(0).val(), pos.eq(1).val(), pos.eq(2).val(), pos.eq(3).val(), pos.eq(4).val(), pos.eq(5).val(), pos.eq(6).val(), pos.eq(7).val()] ),
+                        
+                        sensorNode: JSON.stringify( [ $("#sensorNodeTransmitterAttr").find("input").eq(0).val(), $("#sensorNodeTransmitterAttr").find("input").eq(1).val(), $("#sensorNodeTransmitterAttr").find("input").eq(2).val(), $("#sensorNodeTransmitterAttr").find("input").eq(3).val()
+                                                ,$("#sensorNodeReceiverAttr").find("input").eq(0).val(),$("#sensorNodeReceiverAttr").find("input").eq(1).val(), $("#sensorNodeReceiverAttr").find("input").eq(2).val()] ),
+                        
+                        "deployApType": deployApType,
+                        
+                        nowPage: $.nowPage,
+                        
+                        "ap": JSON.stringify(ap),
+                        "scale": GetDecimals(parseFloat($.imageScale),2),
+                        "uploadMapImage": $.uploadMapImage===undefined?"":$.uploadMapImage,
+                        
+                        "imgZoom": $.imgZoom
+                    },
+                    success: function(data){
+                            data = JSON.parse(data);
+                            console.log(data);
+                            window.open("../../III/resources/projects/"+data.project_name)
+
+                    },
+                    error:function(xhr, ajaxOptions, thrownError){
+                        console.log("errrrrrrrrrrrrrrrrrrorrrrrrrrrrrrrrrrrrrrrr");
+                        console.log(xhr.status); 
+                        console.log(thrownError); 
+                    }
+                });
+            });
+            $("#btnOpenProject").bind("click",function(){
+                $("#projectUpload").click();
+            });
+            
+            $("#iconmenu.nav-tabs li").bind("click",function(){
+                
+                $(".coverCanvas").hide();
+                
+                var goToStep = $(this).attr("step");
+                if( arraySearch($.stepArr,goToStep)<=arraySearch($.stepArr,$.maxStep) ){
+                    go2Steps(goToStep);
+                }
+                
+            });
+            
+            
+            $("[name='apType']").bind("change",function(e){
+                $(".placeForChooseApType").hide();
+                $(".placeForChooseApType[for="+$(this).attr("value")+"]").show();
+                
+                if($(this).attr("value")=="Mesh"){
+                    $("#btnStep4Build").hide();
+                    $("#btnStep4Next").show();
+                }
+                else if($(this).attr("value")=="Ap"){
+                    $("#btnStep4Next").hide();
+                    $("#btnStep4Build").show();
+                }
+            });
+        
+
+        
+        $(".list-group").delegate(".list-group-item","click",function(){
+            
+            if($(this).hasClass("active")){
+                $(this).removeClass("active");
+                resetCanvasComponent();
+            }
+            else{
+                resetCanvasComponent();
+                $(".list-group-item").removeClass("active");
+                $(this).addClass("active");
+                var componentType = $(this).parents("[component-type]").attr("component-type");
+                var info = $(this).data("info");
+//                console.log(componentType);
+                switch(componentType) {
+                    case "wall":
+                        $("#dragFrame").css("left",info.x1<info.x2?info.x1+correctCenteredErrorValue():info.x2+correctCenteredErrorValue())
+                                       .css("top",info.y1<info.y2?info.y1:info.y2)
+                                       .css("width",Math.abs(info.x2-info.x1))
+                                       .css("height",Math.abs(info.y2-info.y1));
+                        $("#inputHeight").val( info.height );
+                        $.setAPHeightType="wall";
+                        $.setAPIndex = info.index;
+                        var showInputPosX = info.x1>info.x2?info.x1:info.x2;
+                        var showInputPosY = info.y1<info.y2?info.y1:info.y2;
+                        $("#inputHeightPlace").css("left", (showInputPosX+$("#canvas").offset().left)+"px").css("top",(showInputPosY+$("#canvas").offset().top)+"px").show();
+                        document.getElementById("inputHeight").focus();
+                        break;
+                    case "straightWall":
+                        $("#dragFrame").css("left",info.x1<info.x2?info.x1+correctCenteredErrorValue():info.x2+correctCenteredErrorValue())
+                                       .css("top",info.y1<info.y2?info.y1:info.y2)
+                                       .css("width",Math.abs(info.x2-info.x1))
+                                       .css("height",Math.abs(info.y2-info.y1));
+                        break;
+                    case "obstacle":
+                        $("#dragFrame").css("left",info.x1<info.x2?info.x1+correctCenteredErrorValue():info.x2+correctCenteredErrorValue())
+                                       .css("top",info.y1<info.y2?info.y1:info.y2)
+                                       .css("width",Math.abs(info.x2-info.x1))
+                                       .css("height",Math.abs(info.y2-info.y1));
+                        $("#inputHeight").val( info.height );
+                        $.setAPHeightType="obstacle";
+                        $.setAPIndex = info.index;
+                        var showInputPosX = info.x1>info.x2?info.x1:info.x2;
+                        var showInputPosY = info.y1<info.y2?info.y1:info.y2;
+                        $("#inputHeightPlace").css("left", (showInputPosX+$("#canvas").offset().left)+"px").css("top",(showInputPosY+$("#canvas").offset().top)+"px").show();
+                        document.getElementById("inputHeight").focus();
+                        break;
+                    case "uplinkPoint":
+                        $("#dragFrame").css("left",info.x-15+correctCenteredErrorValue()).css("top",info.y-15).css("width",30).css("height",30);
+                        $("#inputHeight").val( info.height );
+                        $.setAPHeightType="uplinkPoint";
+                        $.setAPIndex = info.index;
+                        $("#inputHeightPlace").css("left", (info.x+$("#canvas").offset().left)+"px").css("top",(info.y+$("#canvas").offset().top)+"px").show();
+                        document.getElementById("inputHeight").focus();
+                        break;
+                    case "sensorNode":
+                        $("#dragFrame").css("left",info.x-15+correctCenteredErrorValue()).css("top",info.y-15).css("width",30).css("height",30);
+                        $("#inputHeight").val( info.height );
+                        $.setAPHeightType="sensorNode";
+                        $.setAPIndex = info.index;
+                        $("#inputHeightPlace").css("left", (info.x+$("#canvas").offset().left)+"px").css("top",(info.y+$("#canvas").offset().top)+"px").show();
+                        document.getElementById("inputHeight").focus();
+                        break;
+                    case "accessPoint":
+                        $("#dragFrame").css("left",info.x-15+correctCenteredErrorValue()).css("top",info.y-15).css("width",30).css("height",30);
+                        $("#inputHeight").val( info.height );
+                        $.setAPHeightType="accessPoint";
+                        $.setAPIndex = info.index;
+                        $("#inputHeightPlace").css("left", (info.x+$("#canvas").offset().left)+"px").css("top",(info.y+$("#canvas").offset().top)+"px").show();
+                        document.getElementById("inputHeight").focus();
+                        break;
+                }
+                $("#dragFrame").attr("component-type",componentType)
+                            .attr("index",info.index)
+                            .data("info",info)
+                            .show();
+            }
+        });
+        
+        $(".list-group").delegate(".list-group-item .close","click",function(e){
+            e.stopPropagation();
+            e.preventDefault();
+            var componentType = $(this).parents("[component-type]").attr("component-type");
+            var info = $(this).parent().data("info");
+            $(this).parent().remove();
+            $("#dragFrame").hide();
+//            console.log($(".dragPlace>div[component-type="+componentType+"][index="+info.index+"],.coverCanvas>div[component-type="+componentType+"][index="+info.index+"]"));
+            $(".dragPlace>div[component-type="+componentType+"][index="+info.index+"],.coverCanvas>div[component-type="+componentType+"][index="+info.index+"]").remove();
+            
+            switch(componentType) {
+                case "wall":
+                    delete $.drawLines[info.index];
+                    autoDisplayList($('.listOfComponent[component-type="wall"]'));
+                    break;
+                case "straightWall":
+                    delete $.drawStraightLines[info.index];
+                    autoDisplayList($('.listOfComponent[component-type="straightWall"]'));
+                    break;
+                case "obstacle":
+                    delete $.drawObstacles[info.index];
+                    autoDisplayList($('.listOfComponent[component-type="obstacle"]'));
+                    break;
+                case "uplinkPoint":
+                    delete $.drawUplinkPoint[info.index];
+                    autoDisplayList($('.listOfComponent[component-type="uplinkPoint"]'));
+                    break;
+                case "sensorNode":
+                    delete $.drawSensorNode[info.index];
+                    autoDisplayList($('.listOfComponent[component-type="sensorNode"]'));
+                    break;
+                case "accessPoint":
+                    delete $.drawAccessPoint[info.index];
+                    autoDisplayList($('.listOfComponent[component-type="accessPoint"]'));
+                    break;
+                case "regionClassification":
+                    delete $.drawRegionClassifications[info.index];
+                    autoDisplayList($('.listOfComponent[component-type="regionClassification"]'));
+                    break;
+            }
+            resetCanvasComponent();
+//            console.log("drawWhole();");
+//            drawWhole();
+            
+        });
+        
+        
+        
+        function go2Steps(step){
+                
+                if(arraySearch($.stepArr,step)>arraySearch($.stepArr,$.nowPage)){
+//                    console.log("forward");
+                    var leaveStepCallback = leaveStepEvent($.nowPage);
+                    if( !leaveStepCallback["success"] ){
+                        swal(leaveStepCallback["msg"],"","error");
+                        return false;
+                    }
+                    $.maxStep = arraySearch($.stepArr,step)>arraySearch($.stepArr,$.maxStep)?step:$.maxStep;
+                }
+                else{
+//                    console.log("back or stop");
+                    var leaveStepCallback = leaveStepEvent($.nowPage);
+                    if( !leaveStepCallback["success"] ){
+                        $.maxStep = $.nowPage;
+                    }
+                    else{
+                        $.maxStep = arraySearch($.stepArr,step)>arraySearch($.stepArr,$.maxStep)?step:$.maxStep;
+                    }
+                }
+//                console.log("maxStep="+$.maxStep);
+                
+                GoStepEvent(step);
+                
+                $.nowPage = step;
+                step = step.split("-");
+                var pos = $(".nav-tabs a").eq(parseInt(step[0])-1);
+                pos.tab('show');
+                $(".nav-tabs a").removeClass('active');
+                pos.addClass('active');
+                
+                $(".step").html(step[1]);
+                
+                if(step[0]=="1"){
+//                    $("#sContent_0"+step[0]).find("[index="+step[1]+"]").trigger();
+                    $("#sContent_0"+step[0]).find("[index]").hide();
+                    $("#sContent_0"+step[0]).find("[index="+step[1]+"]").show();
+                }
+                if(step[0]=="2"){
+//                    $("#sContent_0"+step[0]).find("[index="+step[1]+"]").trigger();
+                    $("#sContent_0"+step[0]).find("[index]").hide();
+                    $("#sContent_0"+step[0]).find("[index="+step[1]+"]").show();
+                    
+                    $(".nav.nav-pills li.action-group").removeClass("activeS");
+//                    if(step[1]==="2"){
+//                        $("#sContent_0"+step[0]).find("li.action-group[index="+step[1]+"][type='"+$.deploymentType+"']").addClass("activeS");//
+//                    }
+//                    else
+                        $("#sContent_0"+step[0]).find("li.action-group[index="+step[1]+"]").addClass("activeS");//li.action-group
+                    
+                }
+                else if(step[0]=="3"||step[0]=="4"){
+                    $("#sContent_0"+step[0]).find("[index]").hide();
+                    $("#sContent_0"+step[0]).find("[index="+step[1]+"]").show();
+                }
+        }
+        
+        function leaveStepEvent(step){
+                var callback = { "success":false };
+                switch(step) {
+                    case "1-1":
+                        if(!$.drawImgSrc){
+                            var lang = isEmpty( getCookie( "IIITranslate" ) ) ? "en-us" : getCookie( "IIITranslate" );
+                            callback["msg"] = $.globalLang[lang]["PLEASE_IMPORT_MAP"];
+                            return callback;
+                        }
+                        if($.drawSquares[0]===undefined&&$.drawRequirementAreaPolygonals[0]===undefined){
+                            var lang = isEmpty( getCookie( "IIITranslate" ) ) ? "en-us" : getCookie( "IIITranslate" );
+                            callback["msg"] = $.globalLang[lang]["PLEASE_CHOOSE_REQUIREMENT_AREA"];
+                            return callback;
+                        }
+                        break;
+                    case "1-2":
+                        if($.imageScale===0||isNaN($.imageScale)){
+                            var lang = isEmpty( getCookie( "IIITranslate" ) ) ? "en-us" : getCookie( "IIITranslate" );
+                            callback["msg"] = $.globalLang[lang]["PLEASE_DRAW_INPUT_YOUR_SCALE"];
+                            return callback;
+                        }
+                        resetCanvasComponent();
+                        break;
+                    case "2-1":
+                        var check = false;
+                        $.each( $("#sensorNodeReceiverAttr input"), function(k,v){
+                            if($(v).val()==""){
+                                check = true;
+                                return false;
+                            }
+                        });
+                        $.each( $("#sensorNodeTransmitterAttr input"), function(k,v){
+                            if($(v).val()==""){
+                                check = true;
+                                return false;
+                            }
+                        });
+                        if(check){
+                            var lang = isEmpty( getCookie( "IIITranslate" ) ) ? "en-us" : getCookie( "IIITranslate" );
+                            callback["msg"] = $.globalLang[lang]["PLEASE_INPUT_RECEIVER_ATTRIBUTE"];
+                            return callback;
+                        }
+                        break;
+                    case "3-2":
+                        var check = false;
+                        if( $('[name="apType"]:checked').val()===undefined ){
+                            var lang = isEmpty( getCookie( "IIITranslate" ) ) ? "en-us" : getCookie( "IIITranslate" );
+                            callback["msg"] = $.globalLang[lang]["PLEASE_CHOOSE_AP_TYPE"];
+                            return callback;
+                        }
+                        var deployApType = $('[name="apType"]:checked').attr("value");
+                        $.each( $(".myset_subcontent_group[for="+deployApType+"]").find("input"), function(k,v){
+//                            console.log($(v).val());
+                            if($(v).val()===""){
+                                check = true;
+                                return false;
+                            }
+                        });
+                        if(check){
+                            var lang = isEmpty( getCookie( "IIITranslate" ) ) ? "en-us" : getCookie( "IIITranslate" );
+                            callback["msg"] = $.globalLang[lang]["PLEASE_INPUT_TRANSMITTER_AND_RECEIVER_ATTRIBUTE"];
+                            return callback;
+                        }
+                        if( $("[id=inputAPHeight][for="+deployApType+"]").val()==="" ){
+                            var lang = isEmpty( getCookie( "IIITranslate" ) ) ? "en-us" : getCookie( "IIITranslate" );
+                            callback["msg"] = $.globalLang[lang]["PLEASE_INPUT_AP_HEIGHT"];
+                            return callback;
+                        }                        
+                        if( deployApType === "Mesh" && arrayValue($.drawUplinkPoint).length === 0 ){
+                            callback["msg"] = "You choose Mesh mode but without deploying uplink.";
+                            return callback;
+                        }
+                        resetCanvasComponent();
+                        break;
+                }
+                callback["success"] = true;
+                resetCanvasComponent();
+                return callback;
+        }
+        
+        function GoStepEvent(step){
+            
+            if(!$("#btnDrag").hasClass("active"))
+                $("#btnDrag").trigger("click");
+//                switch(step) {
+//                    case "1-1":
+//                        $("#btnRequirementArea").trigger("click");
+//                        break;
+//                    case "1-2":
+//                        $("#btnScale").trigger("click");
+//                        break;
+//                    case "2-1":
+//                        $("#btnUplinkPoint").trigger("click");
+//                        break;
+//                    case "2-2":
+//                        $("#btnSensorNode").trigger("click");
+//                        break;
+//                    case "3-1":
+//                        $("#btnAp").trigger("click");
+//                        break;
+//                    case "4-1":
+//                        $("#btnDrawWall").trigger("click");
+//                        break;
+//                    case "4-2":
+//                        $("#btnObstacle").trigger("click");
+//                        break;
+//                    case "4-3":
+//                        $("#btnDrawRegionClassification").trigger("click");
+//                        break;
+//                    case "5-1":
+//                        $("#btnDrag").trigger("click");
+//                        break;
+//                }
+        }
+        
+        $(".nav.nav-pills li").bind("click",function(){
+            if($(this).hasClass("active")){
+                $(".nav.nav-pills li").removeClass("active");
+                $("#btnDrag").trigger("click");
+            }
+            else{
+                $(".nav.nav-pills li").removeClass("active");
+                $(this).addClass("active");
+//                resetCanvasComponent();
+                if($(this).attr("id")==="btnDrag"){
+//                    console.log("btnDrag")
+                    $(".dragPlace").show();
+                }
+                else{
+                    $(".dragPlace").hide();
+                    resetCanvasComponent();
+                }
+            }
+            
+//            if($(this).hasClass("action-group")){
+//                $(".nav.nav-pills li.action-group").removeClass("activeS");
+//                var index = $(this).attr("index");
+//                $("li.action-group[index="+index+"]").addClass("activeS");
+//                $("#btnPrevAction,#btnNextAction").show();
+//                if( $(this).attr("index")==="1" ){
+//                    $("#btnPrevAction").hide();
+//                }
+//                else if( $(this).attr("index")==="3" ){
+//                    $("#btnNextAction").hide();
+//                }
+//            }
+        });
+        
+        $("#inputScale").bind("keyup change",function(){
+//                $("#htmlScale").html( parseFloat($("#inputScale").val())/$.scalePixel );
+                var scale = parseFloat($("#inputScale").val())/$.scalePixel;
+                $.imageScale = scale;
+                showViewByScale(scale);
+                
+        }).keyup(function(e) {
+            if (e.which == 13) {
+                $(".btnNext:eq(0)").trigger("click");
+            }
+        });
+        $("#inputHeight").bind("keyup change",function(){
+                var height = parseFloat($("#inputHeight").val());
+                var APListPos = $(".listOfComponent[component-type='"+$.setAPHeightType+"'] .list-group-item[index="+$.setAPIndex+"]");
+                if($.setAPHeightType==="sensorNode")
+                    $.drawSensorNode[$.setAPIndex]["height"] = height;
+                else if($.setAPHeightType==="uplinkPoint")
+                    $.drawUplinkPoint[$.setAPIndex]["height"] = height;
+                else if($.setAPHeightType==="accessPoint")
+                    $.drawAccessPoint[$.setAPIndex]["height"] = height;
+                else if($.setAPHeightType==="wall")
+                    $.drawLines[$.setAPIndex]["height"] = height;
+                else if($.setAPHeightType==="obstacle")
+                    $.drawObstacles[$.setAPIndex]["height"] = height;
+                var info = APListPos.data("info");
+                info["height"] = height;
+                APListPos.data("info", info);
+        }).keyup(function(e) {
+            if (e.which == 13) {
+                var height = parseFloat($("#inputHeight").val());
+                if(height<0){
+                    return false;
+                }
+                $(".list-group-item.active").trigger("click");
+            }
+        });;
+
+        $(".btnNext").bind("click",function(){
+            var key = arraySearch($.stepArr,$.nowPage);
+//            console.log($.stepArr[key+1]);
+            go2Steps($.stepArr[key+1]);
+        });
+        
+        $(".btnPrev").bind("click",function(){
+            var key = arraySearch($.stepArr,$.nowPage);
+            go2Steps($.stepArr[key-1]);
+        });
+
+        
+        function arrangeAccessPoint(deployType){
+            loading_ajax_show();
+            setTimeout(function(){ arrangeAccessPointStart(deployType); }, 1200);
+        }
+        
+        function arrangeAccessPointStart(deployType){
+            
+            var uplinkPoint = arrayValue($.drawUplinkPoint).concat(arrayValue($.drawAccessPoint));
+            var manuallyDeployNum = arrayValue(uplinkPoint).length;
+            
+            if(deployType=="arrangeAccessPoint"){
+                var url = "jsp/first.jsp";
+            }
+            else if(deployType=="justCalRSSI"){
+                var url = "jsp/extrafunction.jsp";
+            }
+            
+            //估計佈建數量
+            if( $.drawRequirementAreaPolygonals.length !== 0 ){
+                var requirementAreaMinMax = getRequirementAreaMinMax();
+            }
+            else if($.drawSquares[0]["shape"]!=="square"){
+                var requirementAreaMinMax = $.drawSquares[0];
+            }
+            else{
+                var requirementAreaMinMax = $.drawSquares[0];
+            }
+            var deployApType = $('[name="apType"]:checked').attr("value");
+            var calJson = calculateBothDistanceAndInitPowerTest($(".myset_subcontent_group[for="+deployApType+"]"), $.rssiFactor);
+            var minApRange = calJson["apAndApRange"] < calJson["meshAndSSNRange"] ? calJson["apAndApRange"] : calJson["meshAndSSNRange"];
+            var apHeight = parseFloat($("[id=inputAPHeight][for="+deployApType+"]").val());
+            apHeight = deployApType==="Mesh"?apHeight*0.8:apHeight;
+            
+            
+            
+            if( apHeight>=minApRange ){
+                swal("ERROR", "Auto deploy access point is too high.", "error");
+                loading_ajax_hide();
+                return false;
+            }
+            
+            var apFlatRange = Math.pow( Math.pow(minApRange,2)-Math.pow(apHeight,2) , 1/2 );
+            console.log("apFlatRange="+apFlatRange);
+            
+            if( arrayValue($.drawSensorNode).length==0 ){
+                if( Math.round( ($.imageScale*(requirementAreaMinMax.x2-requirementAreaMinMax.x1))/apFlatRange )*Math.round( ($.imageScale*(requirementAreaMinMax.y2-requirementAreaMinMax.y1))/apFlatRange ) > 100 ){
+                    swal("ERROR", "Please shrink your scale, the scale is too big may lead to memory problem.", "error");
+                    loading_ajax_hide();
+                    return false;
+                }
+            }                 
+            if( deployApType === "Mesh" && arrayValue($.drawUplinkPoint).length === 0 ){
+                swal("ERROR", "You choose Mesh mode but without deploying uplink.", "error");
+                loading_ajax_hide();
+                return false;
+            }
+            
+            if( !checkAllPara() ){
+                swal("ERROR", "", "error");
+                loading_ajax_hide();
+                return false;
+            }
+            
+//            if( "old_PC" ){
+//                getBatchDeployData($.pathLoss ,$.maxNumWalls ,$.rssiFactor ,manuallyDeployNum, url);
+//            }
+//            else{
+                $.time9 = new Date();
+                var data = getDeployData($.pathLoss,$.maxNumWalls,$.rssiFactor);
+                callDeploy(manuallyDeployNum, url, data);
+//            }
+            
+        }
+        
+        function callDeploy(manuallyDeployNum, url, data){
+            $.xhr = $.ajax({
+                type:"POST",
+                url: url,
+                async: true,
+//                    dataType: "JSON",
+                data: data,
+                success: function(data){
+                        var time8 = new Date();
+                        console.log( "algorthim cost : "+time_difference( $.time9, time8 ) );
+                        loading_ajax_hide();
+                        console.log(data);
+                        if(data.search("NumberFormatException")!==-1 ){
+                            swal("ERROR", "Out of memory", "error");
+                            return false;
+                        }
+//                        else if(data.replace(/ /g,"").replace(/\n/g,"")==""){
+//                            swal("ERROR", "Unexpected problems", "error");
+//                            return false;
+//                        }
+                        
+                        console.log(data);
+                        //data = JSON.parse(data);
+                        if(data.error_message){
+                            swal("WARNING", data.error_message, "warning");
+                        }
+//                        $.debugData = data;
+                        
+                        //go2Steps("5-1");
+                        
+                        var deployApType = $('[name="apType"]:checked').attr("value");
+                        var selectTag = $('[id=selectApValue][for='+deployApType+']');
+                        var optTag = selectTag.find("[value="+selectTag.val()+"]");
+                        $.each(data.Deployed_AP_pos,function(k,v){
+                            
+//                            if(k>=arrayValue($.drawAccessPoint).length)
+                            if(k>=manuallyDeployNum)
+                                addOneAccessPoint(v.x, v.y, parseFloat($("[id=inputAPHeight][for="+deployApType+"]").val()), $.drawAccessPoint.length, optTag.attr("image"), optTag.attr("device"))
+                        });
+                        
+                        $.indr_RSSI_information = data.indr_RSSI_information;
+                        
+                        $("#btnDownloadExcel").parent().attr("href","../../III/resources/reports/"+data.excel_report);
+                        
+                        //二擇一
+//                        $("#btnDrag").trigger("click");
+                        $(".nav.nav-pills li").removeClass("active"); $(".dragPlace").hide();
+                        cloneToHeatmap();
+                        dragPlaceEvent();
+                        $(".coverCanvas[type=heatmap]").css("background-image","url('../../III/resources/images/heatmap/"+data.heatmap_fname+"')").show();
+                        
+                        $.sensorNodeRSSI = data.sensorNodeRSSI;
+                        $.fu3i_TxRxRSSI = data.fu3i_TxRxRSSI;
+                        
+                },
+                error:function(xhr, ajaxOptions, thrownError){
+//                        
+                        loading_ajax_hide();
+                        console.log(xhr);
+                        console.log(xhr.status);
+                        console.log(ajaxOptions);
+                        console.log(thrownError);
+                        go2Steps("4-3");
+//                        swal("ERROR", thrownError, "error");
+                        if(ajaxOptions==="abort"){
+                            
+                            return false;
+                        }
+                        else if(xhr.responseText.search("NumberFormatException")!==-1 ){
+                            swal("ERROR", "Out of memory", "error");
+                            return false;
+                        }
+                        else if(thrownError.search("etwork")!==-1 ){
+                            swal("ERROR", thrownError, "error");
+                            return false;
+                        }
+                        else{
+                            swal("ERROR", "Unexpected problems", "error");
+                        }
+//                        console.log(thrownError);
+                }
+            });
+        }
+        
+        $("#btnReDraw").bind("click",function(e){
+                $(".coverCanvas").hide();
+                go2Steps("4-3");
+                $("#btnDrag").trigger("click");
+        });
+        
+        $("#btnReBuild").bind("click",function(e){
+                loading_ajax_show();
+                $('.listOfComponent[component-type="accessPoint"] .clear-display').trigger("click");
+                setTimeout(function(){ 
+                    arrangeAccessPoint("arrangeAccessPoint");
+                }, 2500);
+        });
+        $("#btnBuild").bind("click",function(e){
+                loading_ajax_show();
+                arrangeAccessPoint("arrangeAccessPoint");
+                go2Steps("5-1");
+        });
+        
+        $("[id=btnCalRSSI]").bind("click",function(e){
+                loading_ajax_show();
+                arrangeAccessPoint("justCalRSSI");
+                go2Steps("5-1");
+        });
+        
+        
+        $(".canvas-state-group").bind("click",function(e){
+                $("#inputScalePlace").hide();
+                if($(this).hasClass("active")){
+                    $(this).removeClass("active");
+                } else {
+                    $(".canvas-state-group").removeClass("active");
+                    $(this).addClass("active");
+                }
+        });
+        
+        
+        $(".clear-display").bind("click",function(e){
+                var pos = $(this).parent(".listOfComponent");
+//                console.log(pos.find(".close"));
+                $.each(pos.find(".close"),function(k,v){
+//                    console.log($(v));
+                    $(v).trigger("click");
+//                    console.log($(v));
+                });
+                setTimeout(function(){ drawWhole(); }, 100);
+//                pos.find(".close").trigger("click");
+                
+//                var componentType = pos.attr("component-type");
+//                switch(componentType) {
+//                    case "wall":
+//                        $.drawLines=[];
+//                        break;
+//                    case "straightWall":
+//                        $.drawStraightLines=[];
+//                        break;
+//                    case "obstacle":
+//                        $.drawObstacles=[];
+//                        break;
+//                    case "uplinkPoint":
+//                        $.drawUplinkPoint = [];
+//                        break;
+//                    case "sensorNode":
+//                        $.drawSensorNode = [];
+//                        break;
+//                    case "accessPoint":
+//                        $.drawAccessPoint = [];
+//                        break;
+//                }
+//                pos.hide().find('.list-group').html("");
+//                drawWhole();
+        });
+            
+        function resetCanvasComponent(){
+                $("#dragFrame,#inputScalePlace,#inputHeightPlace").hide();
+                $(".listOfComponent .list-group-item.active").removeClass("active");
+                $.drawRegionClassificationsTemp=[];
+                $.drawRequirementAreaPolygonalsTemp=[];
+                drawWhole();
+        }
+        
+        //get wall list
+        function getWallList(){
+                $.ajaxq("queue",{
+                    type:"GET",
+                    dataType: "text",
+                    url: "jsp/wall.jsp",
+                    data: {
+                        "func" : "list"
+                    },
+                    success: function(data){
+                        data = JSON.parse(data);
+                        console.log(data);
+                        if( data.success ) {
+                                var html="",w_name_key=getCookie("IIITranslate")==="en-us"?"w_ename":"w_name";
+                                $.each(data.data,function(k,v){
+                                    if(v.w_id!==0){
+                                        html += '<option value="#'+v.w_color_rgb+'" w_type="'+v.w_id+'" w_name="'+v[w_name_key]+'">'+v[w_name_key]+'</option>';
+                                    }
+                                });
+                                
+                                $('#wallColor').html(html);
+                                
+                                $("#wallColor").bind("change",function(e){
+                                    var pos = $("#wallColor").next();
+//                                    pos.removeClass();
+//                                    var selectOptPos = $("#wallColor [value="+$(this).val()+"]");
+//                                    var w_color = $("#wallColor [value="+$(this).val()+"]").attr("w_type");
+                                    pos.css("background-color",$(this).val());
+//                                    pos.addClass("icon-box-"+w_type);
+                                }).trigger("change");
+                        }
+                        else {
+                                swal("ERROR", data.msg, "error");
+                        }
+                    },
+                    error:function(xhr, ajaxOptions, thrownError){ 
+                        console.log(xhr.status); 
+                        console.log(thrownError); 
+                    }
+                });
+        }
+        
+        //get region classification list
+        function getRegionClassificationList(){
+                $.ajaxq("queue",{
+                    type:"GET",
+                    dataType: "text",
+                    url: "../resources/json/regionClassification.json",//"jsp/region_classification.jsp"  
+                    data: {
+//                        "func" : "list"
+                    },
+                    success: function(data){
+                        data = JSON.parse(data);
+                        console.log(data);
+                        if( data.success ) {
+                                var html="",rc_name_key=getCookie("IIITranslate")==="en-us"?"rc_ename":"rc_name";
+                                
+                                $.region_classification = data.data;
+                                
+                                $.each(data.data,function(k,v){
+                                    html += '<option value="#'+v.rc_color_rgb+'" rc_type="'+v.rc_id+'">'+v[rc_name_key]+'</option>';
+                                });
+                                
+                                $('#regionClassificationColor').html(html);
+                                
+                                $("#regionClassificationColor").bind("change",function(e){
+                                    var pos = $("#regionClassificationColor").next();
+                                    pos.css("background-color",$(this).val());
+                                }).trigger("change");
+                        }
+                        else {
+                                swal("ERROR", data.msg, "error");
+                        }
+                    },
+                    error:function(xhr, ajaxOptions, thrownError){ 
+                        console.log(xhr.status); 
+                        console.log(thrownError); 
+                    }
+                });
+        }
+        
+        //get access point list
+        function getAccessPointList(){
+                $.ajax({
+                    type:"GET",
+                    dataType: "text",
+                    url: "jsp/access_point.jsp",
+                    data: {
+                        "func" : "list"
+                    },
+                    success: function(data){
+                        data = JSON.parse(data);
+                        if( data.success ) {
+                                var html="";
+                                $.each(data.data,function(k,v){
+                                    if($.inArray(v.ap_species,["all","uplinkpoint"])!==-1)
+                                        html += '<option value="'+v.ap_id+'" device="'+v.ap_name+'" image="'+v.ap_image+'"\n\
+                                                 ap_regulations="'+v.ap_regulations+'" ap_channel="'+v.ap_channel+'" ap_power="'+v.ap_power+'">'+v.ap_name+'</option>';
+                                });
+                                
+//                                $('#selectUplinkPoint').html(html);
+//                                $('#selectAccessPoint').html(html);
+                                $('[id=selectApValue][for=Mesh]').html(html).trigger("change");
+                                html="";
+                                $.each(data.data,function(k,v){
+                                    if($.inArray(v.ap_species,["all","sensornode"])!==-1)
+                                        html += '<option value="'+v.ap_id+'" device="'+v.ap_name+'" image="'+v.ap_image+'"\n\
+                                                 ap_regulations="'+v.ap_regulations+'" ap_channel="'+v.ap_channel+'" ap_power="'+v.ap_power+'">'+v.ap_name+'</option>';
+                                });
+                                $('#selectSensorNode').html(html).trigger("change");
+                                
+                                $('[id=selectApValue][for=Ap]').html(html).trigger("change");
+                        }
+                        else {
+                                swal("ERROR", data.msg, "error");
+                        }
+                    },
+                    error:function(xhr, ajaxOptions, thrownError){ 
+                        console.log(xhr.status); 
+                        console.log(thrownError); 
+                    }
+                });
+        }
+        
+        $( "#dragFrame" ).draggable({
+            containment: '#canvas',
+            drag: function(event) {
+                var elmnt = this;
+                var top = $(this).position().top;
+                var left = $(this).position().left-correctCenteredErrorValue();
+                var componentType = elmnt.getAttribute("component-type");
+                var listIndex = elmnt.getAttribute("index");
+                var info = $(this).data("info");
+                if($.inArray(componentType,["wall","straightWall","obstacle","uplinkPoint","sensorNode","accessPoint"])==-1){
+                    return false;
+                }
+                updateComponentPos(componentType,listIndex,info,left,top,left+elmnt.offsetWidth ,top+elmnt.offsetHeight, true, null );
+            }
+        })
+        
+        function dragPlaceEvent(){
+            $( ".dragPlace>div,.coverCanvas>div" )
+            .unbind("click")
+            .bind("click",function(elmnt){
+                    console.log("click");
+                    var elmnt = this;
+//                    var top = $(this).position().top;
+//                    var left = $(this).position().left;
+                    var componentType = elmnt.getAttribute("component-type");
+//                    var listIndex = elmnt.getAttribute("index");
+                    var info = $(this).data("info");
+                    if($.inArray(componentType,["wall","straightWall","obstacle","uplinkPoint","sensorNode","accessPoint"])==-1){
+                        return false;
+                    }
+                    if(!$(".listOfComponent[component-type="+componentType+"] [index="+info.index+"]").hasClass("active"))
+                        $(".listOfComponent[component-type="+componentType+"] [index="+info.index+"]").trigger("click");
+            }).draggable({
+                containment: '#canvas',
+                start: function(event) {
+                    console.log("drag start");
+                    var elmnt = this;
+//                    var top = $(this).position().top;
+//                    var left = $(this).position().left;
+                    var componentType = elmnt.getAttribute("component-type");
+//                    var listIndex = elmnt.getAttribute("index");
+                    var info = $(this).data("info");
+                    if($.inArray(componentType,["wall","straightWall","obstacle","uplinkPoint","sensorNode","accessPoint"])==-1){
+                        return false;
+                    }
+                    if(!$(".listOfComponent[component-type="+componentType+"] [index="+info.index+"]").hasClass("active"))
+                        $(".listOfComponent[component-type="+componentType+"] [index="+info.index+"]").trigger("click");
+                },
+                drag: function(event) {
+                    var elmnt = this;
+                    var top = $(this).position().top;
+                    var left = $(this).position().left;
+                    var componentType = elmnt.getAttribute("component-type");
+                    var listIndex = elmnt.getAttribute("index");
+                    var info = $(this).data("info");
+                    if($.inArray(componentType,["wall","straightWall","obstacle","uplinkPoint","sensorNode","accessPoint"])==-1){
+                        return false;
+                    }
+                    $("#dragFrame").css("left",(left+correctCenteredErrorValue())+"px").css("top",(top)+"px");
+                    updateComponentPos(componentType, listIndex,info, left,top, left+elmnt.offsetWidth, top+elmnt.offsetHeight, false, $(elmnt) );
+                },
+            });
+        }
+        
+        $("#sensorNodeReceiverAttr input, #sensorNodeTransmitterAttr input").bind("keyup",function(){
+            if(!$("#btnSensorNode").hasClass("active"))
+                $("#btnSensorNode").trigger("click");
+        });
+        
+        function calDeviation(fu3i_TxRxRSSI, pathLoss, maxNumWalls, rssiFactor){
+//            var correct = { "A0" : { "B2":-76
+//                                   , "B3":-75
+//                                   , "B4":-79
+//                                   , "A1":-89
+//                                   , "A2":-87 }
+//                           ,"A1" : { "B2":-61
+//                                   , "B3":-90
+//                                   , "B4":-81
+//                                   , "A0":-89
+//                                   , "A2":-84 }
+//                           ,"A2" : { "B2":-72
+//                                   , "B3":-82
+//                                   , "B4":-67
+//                                   , "A0":-84
+//                                   , "A1":-82 }
+//                           ,"A3" : { "B2":-69
+//                                   , "B1":-78
+//                                   , "A4":-90 }
+//                           ,"A4" : { "B2":-67
+//                                   , "B1":-69
+//                                   , "A3":-89 } };
+//            var correct = { "B2" : { "B3":-66
+//                                   , "B1":-58
+//                                   , "B4":-59
+//                                   , "B0":-85 }
+//                           ,"B3" : { "B2":-69
+//                                   , "B4":-82
+//                                   , "B0":-82 }
+//                           ,"B1" : { "B2":-67 }
+//                           ,"B4" : { "B2":-62
+//                                   , "B3":-81
+//                                   , "B1":-64
+//                                   , "B0":-62 }
+//                           ,"B0" : { "B2":-81
+//                                   , "B4":-78 } };
+            var correct = { "B2" : { "B3":-64
+                                   , "B1":-62
+                                   , "B4":-59 } };
+            
+            var compare = {}, range = { "0-1" : 0, "1-2" : 0, "2-3" : 0, "3-4" : 0, "4-5" : 0, "5-10" : 0, "10up" : 0 }, diff;
+            $.each(correct,function(k,v){
+                compare[k] = {};
+                $.each(v,function(k2,v2){
+                    diff = Math.abs(fu3i_TxRxRSSI[k][k2]- v2);
+                    console.log(fu3i_TxRxRSSI[k][k2], v2, diff);
+                    compare[k][k2] = [v2, fu3i_TxRxRSSI[k][k2], diff];
+                    if(diff<=1){
+                        range["0-1"]++;
+                    }
+                    else if(diff<=2){
+                        range["1-2"]++;
+                    }
+                    else if(diff<=3){
+                        range["2-3"]++;
+                    }
+                    else if(diff<=4){
+                        range["3-4"]++;
+                    }
+                    else if(diff<=5){
+                        range["4-5"]++;
+                    }
+                    else if(diff<=10){
+                        range["5-10"]++;
+                    }
+                    else{
+                        range["10up"]++;
+                    }
+                });
+            });
+            
+            var compare = JSON.stringify(compare);
+            compare += "\n";
+            compare += JSON.stringify(range);
+            
+            $.ajax({
+                type:"GET",
+                url: "https://140.118.122.151:443/III/php/save_test_file.php",
+                data: {"fileName":pathLoss+"_"+maxNumWalls+"_"+rssiFactor
+                      ,"compare":compare
+                },
+                success: function(data){
+                    console.log(data); 
+                },
+                error:function(xhr, ajaxOptions, thrownError){ 
+                    console.log(xhr.status); 
+                    console.log(thrownError); 
+                }
+            });
+            
+        }
+        
+    </script>
+    
+</body>
+</html>
